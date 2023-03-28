@@ -14,6 +14,10 @@ const app = express();
 
 app.use(cors());
 
+//Lectura y parseo del body
+
+app.use(express.json());
+
 //BDdatos
 dbConnection();
 
@@ -23,12 +27,12 @@ console.log(process.env.PORT);
 // pass X7i67CZVLBNbrKBa
 //
 
-app.get('/', (req, res) => { 
-    res.json({
-        ok: true,
-        msg: 'hola mundo'
-    });
-});
+// //Rutas
+
+app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/login', require('./routes/auth'));
+
+
 
 app.listen(process.env.PORT, (req, res) => {
     console.log('servidor corriendo en el puerto ' + process.env.PORT);
