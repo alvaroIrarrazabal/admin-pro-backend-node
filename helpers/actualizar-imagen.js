@@ -6,7 +6,7 @@ const fs = require('fs')
 
 
 const actualizarImagen = async(tipo, id, nombreArchivo) => {
-    
+    let pathViejo = '';
     switch (tipo) {
         case 'medicos':
             const medico = await Medico.findById(id);
@@ -14,7 +14,7 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
                 return false;
             }
 
-          const   pathViejo = `./uploads/medicos/${medico.img}`;
+             pathViejo = `./uploads/medicos/${medico.img}`;
 
             if (fs.existsSync(pathViejo)) {
                 //Borrar la imagen si existia
@@ -34,12 +34,12 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
                  return false;
              }
 
-           const   pathViejoHospital = `./uploads/hospitales/${hospital.img}`;
+              pathViejo = `./uploads/hospitales/${hospital.img}`;
 
-             if (fs.existsSync(pathViejoHospital)) {
+             if (fs.existsSync(pathViejo)) {
                  //Borrar la imagen si existia
 
-                 fs.unlinkSync(pathViejoHospital);
+                 fs.unlinkSync(pathViejo);
 
              }
 
@@ -54,12 +54,12 @@ const actualizarImagen = async(tipo, id, nombreArchivo) => {
                     return false;
                 }
 
-                const pathViejoUsuario = `./uploads/usuarios/${usuario.img}`;
+                 pathViejo = `./uploads/usuarios/${usuario.img}`;
 
-                if (fs.existsSync(pathViejoUsuario)) {
+                if (fs.existsSync(pathViejo)) {
                     //Borrar la imagen si existia
 
-                    fs.unlinkSync(pathViejoUsuario);
+                    fs.unlinkSync(pathViejo);
 
                 }
 
