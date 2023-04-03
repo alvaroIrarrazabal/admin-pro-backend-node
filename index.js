@@ -3,7 +3,9 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
-const { dbConnection } = require('./database/config')
+const {
+    dbConnection
+} = require('./database/config')
 
 
 //crear servidorde express
@@ -19,9 +21,14 @@ app.use(cors());
 app.use(express.json());
 
 //BDdatos
+
+//directorio publico
+
 dbConnection();
 
-console.log(process.env.PORT);
+
+app.use(express.static('public'))
+
 
 //user irarrazabalalvaro
 // pass X7i67CZVLBNbrKBa
